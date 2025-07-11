@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -51,6 +52,15 @@ export default function FranchisePage() {
       <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
+          <div className="mb-8">
+            <Image
+              src="/logo-only.png"
+              alt="Alexa Biopharma"
+              width={250}
+              height={100}
+              className="h-14 w-auto object-contain mx-auto "
+            />
+          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">Join Hands. Grow Together.</h1>
           <p className="text-xl lg:text-2xl mb-8 opacity-90">
             Be your own boss. Earn more. Grow faster with Alexa Biopharma.

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -22,6 +23,15 @@ export default function AboutPage() {
       <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
+          <div className="mb-8">
+            <Image
+              src="/logo-full.png"
+              alt="Alexa Biopharma"
+              width={300}
+              height={120}
+              className="h-16 w-auto object-contain mx-auto "
+            />
+          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
             Dedicated to High-Quality, Affordable Healthcare
           </h1>
@@ -55,6 +65,15 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center">
+              <div className="mb-6">
+                <Image
+                  src="/logo-only.png"
+                  alt="Alexa Biopharma"
+                  width={150}
+                  height={60}
+                  className="h-10 w-auto object-contain mx-auto "
+                />
+              </div>
               <Building2 className="w-32 h-32 text-white mx-auto mb-6" />
               <h3 className="text-white text-2xl font-semibold mb-4">Modern Manufacturing Facility</h3>
               <p className="text-white/90">State-of-the-art WHO-GMP compliant manufacturing units</p>

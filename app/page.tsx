@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -28,6 +29,15 @@ export default function HomePage() {
       <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20 lg:py-32">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
+          <div className="mb-8">
+            <Image
+              src="/logo-only.png"
+              alt="Alexa Biopharma"
+              width={300}
+              height={120}
+              className="h-16 w-auto object-contain mx-auto"
+            />
+          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
             A Trusted Name in Indian Pharmaceuticals
           </h1>
@@ -104,6 +114,15 @@ export default function HomePage() {
               </Button>
             </div>
             <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center">
+              <div className="mb-4">
+                <Image
+                  src="/logo-only.png"
+                  alt="Alexa Biopharma"
+                  width={120}
+                  height={48}
+                  className="h-8 w-auto object-contain mx-auto "
+                />
+              </div>
               <Building2 className="w-24 h-24 text-white mx-auto mb-4" />
               <h3 className="text-white text-xl font-semibold">Modern Manufacturing Facility</h3>
             </div>

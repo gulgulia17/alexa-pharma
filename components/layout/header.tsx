@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Phone, Mail } from "lucide-react"
@@ -45,7 +46,15 @@ export function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-[#1E62A2] font-['Poppins']">Alexa Biopharma</div>
+            <div className="relative">
+              <Image
+                src="/logo-full.png"
+                alt="Alexa Biopharma"
+                width={200}
+                height={80}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -77,6 +86,15 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
               <div className="flex flex-col space-y-4 mt-8">
+                <div className="mb-6">
+                  <Image
+                    src="/logo-full.png"
+                    alt="Alexa Biopharma"
+                    width={150}
+                    height={60}
+                    className="h-10 w-auto object-contain"
+                  />
+                </div>
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
