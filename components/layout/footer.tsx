@@ -10,13 +10,15 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <div className="mb-4">
+              <div className="w-[8rem] bg-white">
               <Image
                 src="/logo-full.png"
                 alt="Alexa Biopharma"
                 width={180}
                 height={70}
-                className="h-10 w-auto object-contain "
+                className="h-10 w-auto object-contain"
               />
+              </div>
             </div>
             <p className="text-white/80 mb-4">
               A trusted name in Indian pharmaceuticals, committed to providing high-quality, affordable healthcare

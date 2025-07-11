@@ -18,7 +18,7 @@ export default function ProductsPage() {
               alt="Alexa Biopharma"
               width={250}
               height={100}
-              className="h-14 w-auto object-contain mx-auto "
+              className="h-16 w-auto object-contain mx-auto bg-white"
             />
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
@@ -97,7 +97,7 @@ export default function ProductsPage() {
                   suspensions.
                 </p>
                 <div className="text-sm text-gray-500 mb-6">80+ SKUs Available</div>
-                <Button asChild className="w-full bg-[#37A7DF] hover:bg-[#37A7DF]/90">
+                <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
                   <Link href="/products/syrups">
                     View Products <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -116,7 +116,7 @@ export default function ProductsPage() {
                   injections.
                 </p>
                 <div className="text-sm text-gray-500 mb-6">50+ SKUs Available</div>
-                <Button asChild className="w-full bg-[#91C2E5] hover:bg-[#91C2E5]/90 text-[#1E62A2]">
+                <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
                   <Link href="/products/injections">
                     View Products <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -153,7 +153,7 @@ export default function ProductsPage() {
                   Topical formulations including gels, creams, ointments, and medicated soaps for external applications.
                 </p>
                 <div className="text-sm text-gray-500 mb-6">40+ SKUs Available</div>
-                <Button asChild className="w-full bg-[#37A7DF] hover:bg-[#37A7DF]/90">
+                <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
                   <Link href="/products/ointments">
                     View Products <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -171,7 +171,7 @@ export default function ProductsPage() {
                   Specialized formulations including ORS, energy drinks, probiotics, and other therapeutic preparations.
                 </p>
                 <div className="text-sm text-gray-500 mb-6">30+ SKUs Available</div>
-                <Button asChild className="w-full bg-[#91C2E5] hover:bg-[#91C2E5]/90 text-[#1E62A2]">
+                <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
                   <Link href="/products/others">
                     View Products <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -189,11 +189,11 @@ export default function ProductsPage() {
             Featured Products
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow relative">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-bold text-lg">SAFE-100</h3>
-                  <span className="text-sm bg-[#1E62A2] text-white px-2 py-1 rounded">Tablet</span>
+                  <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Tablet</span>
                 </div>
                 <p className="text-gray-600 mb-2">
                   <strong>Composition:</strong> Cefixime I.P.
@@ -206,7 +206,7 @@ export default function ProductsPage() {
                 </p>
                 <Button
                   variant="outline"
-                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent absolute bottom-5 w-[90%]"
                 >
                   Enquire Now
                 </Button>
@@ -237,11 +237,11 @@ export default function ProductsPage() {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow relative">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-bold text-lg">RD-COBAL</h3>
-                  <span className="text-sm bg-[#91C2E5] text-white px-2 py-1 rounded">Injection</span>
+                  <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Injection</span>
                 </div>
                 <p className="text-gray-600 mb-2">
                   <strong>Composition:</strong> Methylcobalamin + Pyridoxine HCL
@@ -254,7 +254,7 @@ export default function ProductsPage() {
                 </p>
                 <Button
                   variant="outline"
-                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent absolute bottom-5 w-[90%]"
                 >
                   Enquire Now
                 </Button>

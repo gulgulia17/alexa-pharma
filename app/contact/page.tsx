@@ -43,7 +43,7 @@ export default function ContactPage() {
               alt="Alexa Biopharma"
               width={250}
               height={100}
-              className="h-14 w-auto object-contain mx-auto "
+              className="h-16 w-auto object-contain mx-auto bg-white"
             />
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">Get in Touch</h1>

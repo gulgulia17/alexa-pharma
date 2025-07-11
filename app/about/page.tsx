@@ -25,11 +25,11 @@ export default function AboutPage() {
         <div className="relative container mx-auto px-4 text-center">
           <div className="mb-8">
             <Image
-              src="/logo-full.png"
+              src="/logo-only.png"
               alt="Alexa Biopharma"
               width={300}
               height={120}
-              className="h-16 w-auto object-contain mx-auto "
+              className="h-16 w-auto object-contain mx-auto bg-white"
             />
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
@@ -65,15 +65,6 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center">
-              <div className="mb-6">
-                <Image
-                  src="/logo-only.png"
-                  alt="Alexa Biopharma"
-                  width={150}
-                  height={60}
-                  className="h-10 w-auto object-contain mx-auto "
-                />
-              </div>
               <Building2 className="w-32 h-32 text-white mx-auto mb-6" />
               <h3 className="text-white text-2xl font-semibold mb-4">Modern Manufacturing Facility</h3>
               <p className="text-white/90">State-of-the-art WHO-GMP compliant manufacturing units</p>
@@ -240,7 +231,7 @@ export default function AboutPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                className="hover:border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white text-white bg-transparent"
               >
                 <Link href="/products">View Our Products</Link>
               </Button>

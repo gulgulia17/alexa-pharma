@@ -35,7 +35,7 @@ export default function HomePage() {
               alt="Alexa Biopharma"
               width={300}
               height={120}
-              className="h-16 w-auto object-contain mx-auto"
+              className="h-16 w-auto object-contain mx-auto bg-white"
             />
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
@@ -115,13 +115,6 @@ export default function HomePage() {
             </div>
             <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center">
               <div className="mb-4">
-                <Image
-                  src="/logo-only.png"
-                  alt="Alexa Biopharma"
-                  width={120}
-                  height={48}
-                  className="h-8 w-auto object-contain mx-auto "
-                />
               </div>
               <Building2 className="w-24 h-24 text-white mx-auto mb-4" />
               <h3 className="text-white text-xl font-semibold">Modern Manufacturing Facility</h3>
