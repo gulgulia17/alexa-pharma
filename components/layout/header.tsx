@@ -3,12 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Phone, Mail } from "lucide-react"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -17,6 +19,13 @@ export function Header() {
     { name: "Franchise", href: "/franchise" },
     { name: "Contact", href: "/contact" },
   ]
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/"
+    }
+    return pathname.startsWith(href)
+  }
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -63,7 +72,11 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-[#1E62A2] font-medium transition-colors"
+                className={`font-medium transition-colors ${
+                  isActive(item.href)
+                    ? "text-[#1E62A2] border-b-2 border-[#1E62A2] pb-1"
+                    : "text-gray-700 hover:text-[#1E62A2]"
+                }`}
               >
                 {item.name}
               </Link>
@@ -99,7 +112,9 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-lg font-medium text-gray-700 hover:text-[#1E62A2] transition-colors"
+                    className={`text-lg font-medium transition-colors ${
+                      isActive(item.href) ? "text-[#1E62A2] font-bold" : "text-gray-700 hover:text-[#1E62A2]"
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}

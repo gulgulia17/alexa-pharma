@@ -109,7 +109,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/80 text-sm">© 2024 Alexa Biopharma Pvt. Ltd. All rights reserved.</p>
+            <p className="text-white/80 text-sm">© 2025 Alexa Biopharma Pvt. Ltd. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/privacy" className="text-white/80 hover:text-white text-sm transition-colors">
                 Privacy Policy
