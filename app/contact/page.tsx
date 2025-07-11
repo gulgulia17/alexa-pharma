@@ -245,6 +245,13 @@ export default function ContactPage() {
                       <span>Exclusive distribution rights</span>
                     </div>
                   </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                  >
+                    Download PDF
+                  </Button>
                 </CardContent>
               </Card>
             </div>

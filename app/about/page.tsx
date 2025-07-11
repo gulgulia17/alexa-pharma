@@ -221,7 +221,7 @@ export default function AboutPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[#1E62A2] bg-transparent"
+                className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
               >
                 <Link href="/products">View Our Products</Link>
               </Button>
@@ -290,7 +290,12 @@ export default function AboutPage() {
                   Franchise Inquiry <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+              >
                 <Link href="/products">View Products</Link>
               </Button>
             </div>

@@ -152,7 +152,10 @@ export default function ProductsPage() {
                 <p className="text-gray-600 mb-4">
                   <strong>Pack:</strong> 10x10 Alu-Alu
                 </p>
-                <Button variant="outline" className="w-full border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  variant="outline"
+                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   Enquire Now
                 </Button>
               </CardContent>
@@ -173,7 +176,10 @@ export default function ProductsPage() {
                 <p className="text-gray-600 mb-4">
                   <strong>Pack:</strong> 60ml Bottle
                 </p>
-                <Button variant="outline" className="w-full border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  variant="outline"
+                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   Enquire Now
                 </Button>
               </CardContent>
@@ -194,7 +200,10 @@ export default function ProductsPage() {
                 <p className="text-gray-600 mb-4">
                   <strong>Pack:</strong> 10x10 Blister
                 </p>
-                <Button variant="outline" className="w-full border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  variant="outline"
+                  className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   Enquire Now
                 </Button>
               </CardContent>
@@ -241,7 +250,12 @@ export default function ProductsPage() {
             <Button size="lg" className="bg-[#1E62A2] hover:bg-[#1E62A2]/90">
               Request Custom Quote
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+            >
               <Link href="/franchise">Apply for Franchise</Link>
             </Button>
           </div>

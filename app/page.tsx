@@ -123,7 +123,12 @@ export default function HomePage() {
                 <Pill className="w-16 h-16 text-[#1E62A2] mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="font-semibold mb-2">Tablets & Capsules</h3>
                 <p className="text-sm text-gray-600 mb-4">Wide range of solid dosage forms</p>
-                <Button asChild variant="outline" size="sm" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   <Link href="/products/tablets-capsules">View Products</Link>
                 </Button>
               </CardContent>
@@ -133,7 +138,12 @@ export default function HomePage() {
                 <Beaker className="w-16 h-16 text-[#1E62A2] mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="font-semibold mb-2">Syrups & Dry Syrups</h3>
                 <p className="text-sm text-gray-600 mb-4">Liquid formulations for all ages</p>
-                <Button asChild variant="outline" size="sm" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   <Link href="/products/syrups">View Products</Link>
                 </Button>
               </CardContent>
@@ -143,7 +153,12 @@ export default function HomePage() {
                 <Syringe className="w-16 h-16 text-[#1E62A2] mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="font-semibold mb-2">Injections</h3>
                 <p className="text-sm text-gray-600 mb-4">Injectable pharmaceutical solutions</p>
-                <Button asChild variant="outline" size="sm" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   <Link href="/products/injections">View Products</Link>
                 </Button>
               </CardContent>
@@ -153,7 +168,12 @@ export default function HomePage() {
                 <Leaf className="w-16 h-16 text-[#1E62A2] mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="font-semibold mb-2">Nutraceuticals</h3>
                 <p className="text-sm text-gray-600 mb-4">Health and wellness supplements</p>
-                <Button asChild variant="outline" size="sm" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                >
                   <Link href="/products/nutraceuticals">View Products</Link>
                 </Button>
               </CardContent>
