@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Pill, Beaker, Syringe, Leaf, Search, Download, ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export default function ProductsPage() {
   return (
@@ -11,6 +12,15 @@ export default function ProductsPage() {
       <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
+          <div className="mb-8">
+            <Image
+              src="/logo-only.png"
+              alt="Alexa Biopharma"
+              width={250}
+              height={100}
+              className="h-14 w-auto object-contain mx-auto "
+            />
+          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
             Explore Our Complete Product Portfolio
           </h1>
@@ -36,10 +46,16 @@ export default function ProductsPage() {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <Input placeholder="Search products by name or composition..." className="pl-10 py-3 text-lg" />
-            </div>
+            <Link href="/search" className="block">
+              <div className="relative cursor-pointer">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  placeholder="Search products by name or composition..."
+                  className="pl-10 py-3 text-lg cursor-pointer"
+                  readOnly
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -50,7 +66,7 @@ export default function ProductsPage() {
           <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">
             Product Categories
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
               <CardContent className="p-8 text-center">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#1E62A2] to-[#37A7DF] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
@@ -126,6 +142,42 @@ export default function ProductsPage() {
                 </Button>
               </CardContent>
             </Card>
+
+            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <CardContent className="p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#37A7DF] to-[#1E62A2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <span className="text-3xl">🧴</span>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Ointments & Solutions</h3>
+                <p className="text-gray-600 mb-6">
+                  Topical formulations including gels, creams, ointments, and medicated soaps for external applications.
+                </p>
+                <div className="text-sm text-gray-500 mb-6">40+ SKUs Available</div>
+                <Button asChild className="w-full bg-[#37A7DF] hover:bg-[#37A7DF]/90">
+                  <Link href="/products/ointments">
+                    View Products <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <CardContent className="p-8 text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <span className="text-3xl">📦</span>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Other Preparations</h3>
+                <p className="text-gray-600 mb-6">
+                  Specialized formulations including ORS, energy drinks, probiotics, and other therapeutic preparations.
+                </p>
+                <div className="text-sm text-gray-500 mb-6">30+ SKUs Available</div>
+                <Button asChild className="w-full bg-[#91C2E5] hover:bg-[#91C2E5]/90 text-[#1E62A2]">
+                  <Link href="/products/others">
+                    View Products <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -164,17 +216,17 @@ export default function ProductsPage() {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold text-lg">ALEXA-COLD</h3>
+                  <h3 className="font-bold text-lg">LYCOLIFE</h3>
                   <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Syrup</span>
                 </div>
                 <p className="text-gray-600 mb-2">
-                  <strong>Composition:</strong> Paracetamol + CPM
+                  <strong>Composition:</strong> Lycopene, Multivitamins & Multiminerals
                 </p>
                 <p className="text-gray-600 mb-2">
-                  <strong>Strength:</strong> 125mg + 2mg
+                  <strong>Pack:</strong> 200 ml
                 </p>
                 <p className="text-gray-600 mb-4">
-                  <strong>Pack:</strong> 60ml Bottle
+                  <strong>Packing:</strong> Outer
                 </p>
                 <Button
                   variant="outline"
@@ -188,17 +240,17 @@ export default function ProductsPage() {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold text-lg">VITA-MAX</h3>
-                  <span className="text-sm bg-[#91C2E5] text-white px-2 py-1 rounded">Capsule</span>
+                  <h3 className="font-bold text-lg">RD-COBAL</h3>
+                  <span className="text-sm bg-[#91C2E5] text-white px-2 py-1 rounded">Injection</span>
                 </div>
                 <p className="text-gray-600 mb-2">
-                  <strong>Composition:</strong> Multivitamin
+                  <strong>Composition:</strong> Methylcobalamin + Pyridoxine HCL
                 </p>
                 <p className="text-gray-600 mb-2">
-                  <strong>Strength:</strong> As per IP
+                  <strong>Strength:</strong> 1500 mcg + 100 mg
                 </p>
                 <p className="text-gray-600 mb-4">
-                  <strong>Pack:</strong> 10x10 Blister
+                  <strong>Pack:</strong> Dispo Pack
                 </p>
                 <Button
                   variant="outline"
