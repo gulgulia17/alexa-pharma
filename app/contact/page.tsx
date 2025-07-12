@@ -12,7 +12,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock, Send, Building2, Globe, Users } from "lucide-react"
 
+import { useToast } from "@/hooks/use-toast"
+
 export default function ContactPage() {
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,15 +32,26 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
+
       if (res.ok) {
-        alert("Your message has been sent.")
+        toast({
+          title: "Message sent successfully",
+          description: "Thank you for contacting us. We'll get back to you soon.",
+        })
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
       } else {
-        alert("Failed to send message.")
+        toast({
+          title: "Failed to send message",
+          description: "Something went wrong. Please try again later.",
+        })
       }
+
     } catch (error) {
       console.error("Failed to submit contact form", error)
-      alert("Failed to send message.")
+      toast({
+        title: "Error submitting form",
+        description: "Check your internet connection or try again later.",
+      })
     }
   }
 
