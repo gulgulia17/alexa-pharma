@@ -1,83 +1,61 @@
-# Alexa Biopharma Web App
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-This repository contains a **Next.js 15** web application written in **TypeScript**. It represents the website for an Indian pharmaceutical company and includes pages for products, franchise opportunities, search and more.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## Project Structure
+## About Laravel
 
-```
-app/          Next.js App Router pages and styles
-components/   Reusable React components (layout and UI)
-lib/          Static data (product catalog) and utilities
-hooks/        Custom React hooks
-public/       Static assets such as logos
-```
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- **`app/layout.tsx`** provides global metadata, loads fonts and wraps every page with the site header and footer.
-- **`lib/products-data.ts`** defines product information and helper functions used by the products and search pages.
-- **`components/ui/`** contains Shadcn UI components styled with Tailwind CSS.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## Getting Started
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-1. Install dependencies (using `pnpm`, `npm`, or `yarn`). Example with pnpm:
-   ```bash
-   pnpm install
-   ```
-2. Start the development server:
-   ```bash
-   pnpm dev
-   ```
-   The site will be available at `http://localhost:3000`.
+## Learning Laravel
 
-3. Build for production:
-   ```bash
-   pnpm build
-   pnpm start
-   ```
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-The configuration in `next.config.mjs` disables ESLint and TypeScript errors during the build. Images are served unoptimized.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-## Environment Variables
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-This project uses [Supabase](https://supabase.com/) to store contact form submissions. Create a `.env.local` file (or define the variables in Vercel) with the following keys:
+## Laravel Sponsors
 
-```bash
-SUPABASE_URL=<your-supabase-url>
-SUPABASE_SERVICE_ROLE_KEY=<your-supabase-service-role-key>
-```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-These values are required at runtime so be sure to configure them in your Vercel project settings when deploying.
+### Premium Partners
 
-### Deploying with Vercel
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
-1. Create a new project on [Supabase](https://supabase.com/) and set up a table named `contact_messages` to store contact form submissions.
-2. Deploy this Next.js app to [Vercel](https://vercel.com/).
-3. In the Vercel dashboard, add the `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` environment variables from your Supabase project.
-4. Redeploy the application so the variables are available to the serverless functions at runtime.
+## Contributing
 
-## Customization
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-- **Tailwind CSS** is configured in `tailwind.config.ts` and global styles are in `app/globals.css`.
-- **Product data** can be edited in `lib/products-data.ts`.
-- New pages can be added under the `app/` directory following Next.js App Router conventions.
+## Code of Conduct
 
-## Useful Scripts
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-- `pnpm dev` – Run the app in development mode.
-- `pnpm build` – Create an optimized production build.
-- `pnpm start` – Start the production server after building.
-- `pnpm lint` – Run Next.js ESLint.
-- `pnpm test` – Run the Jest test suite.
+## Security Vulnerabilities
 
-### Running Tests
-
-Install dependencies and run:
-
-```bash
-pnpm test
-```
-
-This executes the full Jest suite including DOM and API tests.
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-No license information is provided in this repository.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
