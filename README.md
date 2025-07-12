@@ -36,6 +36,24 @@ public/       Static assets such as logos
 
 The configuration in `next.config.mjs` disables ESLint and TypeScript errors during the build. Images are served unoptimized.
 
+## Environment Variables
+
+This project uses [Supabase](https://supabase.com/) to store contact form submissions. Create a `.env.local` file (or define the variables in Vercel) with the following keys:
+
+```bash
+SUPABASE_URL=<your-supabase-url>
+SUPABASE_SERVICE_ROLE_KEY=<your-supabase-service-role-key>
+```
+
+These values are required at runtime so be sure to configure them in your Vercel project settings when deploying.
+
+### Deploying with Vercel
+
+1. Create a new project on [Supabase](https://supabase.com/) and set up a table named `contact_messages` to store contact form submissions.
+2. Deploy this Next.js app to [Vercel](https://vercel.com/).
+3. In the Vercel dashboard, add the `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` environment variables from your Supabase project.
+4. Redeploy the application so the variables are available to the serverless functions at runtime.
+
 ## Customization
 
 - **Tailwind CSS** is configured in `tailwind.config.ts` and global styles are in `app/globals.css`.
