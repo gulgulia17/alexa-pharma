@@ -48,6 +48,7 @@ The configuration in `next.config.mjs` disables ESLint and TypeScript errors dur
 - `pnpm build` – Create an optimized production build.
 - `pnpm start` – Start the production server after building.
 - `pnpm lint` – Run Next.js ESLint.
+- `pnpm test` – Run the Jest test suite.
 
 ## License
 
