@@ -68,6 +68,16 @@ These values are required at runtime so be sure to configure them in your Vercel
 - `pnpm lint` – Run Next.js ESLint.
 - `pnpm test` – Run the Jest test suite.
 
+### Running Tests
+
+Install dependencies and run:
+
+```bash
+pnpm test
+```
+
+This executes the full Jest suite including DOM and API tests.
+
 ## License
 
 No license information is provided in this repository.
