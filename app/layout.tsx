@@ -4,6 +4,7 @@ import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Alexa Biopharma Pvt. Ltd. - A trusted name in Indian pharmaceuticals. ISO 9001:2015 certified, WHO-GMP compliant. Offering franchise opportunities across India.",
   keywords: "pharmaceutical company, PCD pharma franchise, medicine manufacturer, healthcare, India",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -29,7 +30,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} font-sans`}>
         <Header />
-        <main>{children}</main>
+        <main>
+          {children}
+          <SpeedInsights />
+        </main>
         <Footer />
       </body>
     </html>
