@@ -1,5 +1,4 @@
-import Link from "next/link"
-import Image from "next/image"
+import { Link } from "react-router-dom"
 import { Phone, Mail, MapPin, Globe } from "lucide-react"
 
 export function Footer() {
@@ -11,7 +10,7 @@ export function Footer() {
           <div>
             <div className="mb-4">
               <div className="w-[8rem] bg-white">
-              <Image
+              <img
                 src="/logo-full.png"
                 alt="Alexa Biopharma"
                 width={180}

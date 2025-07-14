@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -53,7 +52,7 @@ export default function FranchisePage() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
           <div className="mb-8">
-            <Image
+            <img
               src="/logo-only.png"
               alt="Alexa Biopharma"
               width={250}

@@ -1,16 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
+import { Link, useLocation } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Phone, Mail } from "lucide-react"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
+  const pathname = useLocation().pathname
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -56,7 +54,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="relative">
-              <Image
+              <img
                 src="/logo-full.png"
                 alt="Alexa Biopharma"
                 width={200}
@@ -100,7 +98,7 @@ export function Header() {
             <SheetContent side="right" className="w-[300px]">
               <div className="flex flex-col space-y-4 mt-8">
                 <div className="mb-6">
-                  <Image
+                  <img
                     src="/logo-full.png"
                     alt="Alexa Biopharma"
                     width={150}

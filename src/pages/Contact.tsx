@@ -3,12 +3,12 @@
 import type React from "react"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { submitContact } from "@/lib/contact"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock, Send, Building2, Globe, Users } from "lucide-react"
 
@@ -27,24 +27,12 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      await submitContact(formData)
+      toast({
+        title: "Message sent successfully",
+        description: "Thank you for contacting us. We'll get back to you soon.",
       })
-
-      if (res.ok) {
-        toast({
-          title: "Message sent successfully",
-          description: "Thank you for contacting us. We'll get back to you soon.",
-        })
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
-      } else {
-        toast({
-          title: "Failed to send message",
-          description: "Something went wrong. Please try again later.",
-        })
-      }
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
 
     } catch (error) {
       console.error("Failed to submit contact form", error)
@@ -66,7 +54,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
           <div className="mb-8">
-            <Image
+            <img
               src="/logo-only.png"
               alt="Alexa Biopharma"
               width={250}
