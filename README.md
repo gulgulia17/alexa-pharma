@@ -1,18 +1,20 @@
 # Alexa Biopharma Web App
 
-This repository contains a **Next.js 15** web application written in **TypeScript**. It represents the website for an Indian pharmaceutical company and includes pages for products, franchise opportunities, search and more.
+This repository now contains a **React** web application built with **Vite** and **TypeScript**. It represents the website for an Indian pharmaceutical company and includes pages for products, franchise opportunities, search and more.
 
 ## Project Structure
 
 ```
-app/          Next.js App Router pages and styles
-components/   Reusable React components (layout and UI)
-lib/          Static data (product catalog) and utilities
-hooks/        Custom React hooks
+src/          Application source code
+├─ components/ UI components (layout and Shadcn UI)
+├─ hooks/      Custom React hooks
+├─ lib/        Data utilities and helpers
+├─ pages/      React Router pages
+└─ styles/     Global styles
 public/       Static assets such as logos
 ```
 
-- **`app/layout.tsx`** provides global metadata, loads fonts and wraps every page with the site header and footer.
+- **`src/components/layout`** provides the site header and footer used on all pages.
 - **`lib/products-data.ts`** defines product information and helper functions used by the products and search pages.
 - **`components/ui/`** contains Shadcn UI components styled with Tailwind CSS.
 
@@ -26,15 +28,13 @@ public/       Static assets such as logos
    ```bash
    pnpm dev
    ```
-   The site will be available at `http://localhost:3000`.
+   The site will be available at `http://localhost:5173`.
 
 3. Build for production:
    ```bash
    pnpm build
-   pnpm start
+   pnpm preview
    ```
-
-The configuration in `next.config.mjs` disables ESLint and TypeScript errors during the build. Images are served unoptimized.
 
 ## Environment Variables
 

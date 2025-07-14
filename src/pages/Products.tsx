@@ -1,9 +1,8 @@
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Pill, Beaker, Syringe, Leaf, Search, Download, ArrowRight } from "lucide-react"
-import Image from "next/image"
 
 export default function ProductsPage() {
   return (
@@ -13,7 +12,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative container mx-auto px-4 text-center">
           <div className="mb-8">
-            <Image
+            <img
               src="/logo-only.png"
               alt="Alexa Biopharma"
               width={250}

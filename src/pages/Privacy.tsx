@@ -1,5 +1,4 @@
-import Link from "next/link"
-import Image from "next/image"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Shield, Eye, Lock, FileText } from "lucide-react"
@@ -21,7 +20,7 @@ export default function PrivacyPolicyPage() {
           </div>
           <div className="text-center">
             <div className="mb-6">
-              <Image
+              <img
                 src="/logo-only.png"
                 alt="Alexa Biopharma"
                 width={200}

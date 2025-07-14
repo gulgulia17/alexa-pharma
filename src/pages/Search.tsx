@@ -1,14 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Search } from "lucide-react"
 import { searchProducts, type Product } from "@/lib/products-data"
-import Image from "next/image"
 
 export default function SearchPage() {
   const [query, setQuery] = useState("")
@@ -45,7 +44,7 @@ export default function SearchPage() {
           </div>
           <div className="text-center">
             <div className="mb-6">
-              <Image
+              <img
                 src="/logo-only.png"
                 alt="Alexa Biopharma"
                 width={200}

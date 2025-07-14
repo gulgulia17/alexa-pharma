@@ -1,15 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import { Link, useParams, Navigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Search, Filter, Grid, List } from "lucide-react"
 import { getProductsByCategory, categories } from "@/lib/products-data"
-import { notFound } from "next/navigation"
-import { useParams } from "next/navigation"
 
 interface PageProps {
   params: {
@@ -25,7 +23,7 @@ export default function CategoryPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
   if (!categories[category as keyof typeof categories]) {
-    notFound()
+    return <Navigate to="/products" replace />
   }
 
   const categoryInfo = categories[category as keyof typeof categories]
