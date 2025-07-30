@@ -2,21 +2,32 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
-use Filament\Panel;
-use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
-use Filament\Widgets;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Routing\Middleware\SubstituteBindings;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\{
+    Session\Middleware\StartSession,
+    Routing\Middleware\SubstituteBindings,
+    View\Middleware\ShareErrorsFromSession,
+    Foundation\Http\Middleware\VerifyCsrfToken
+};
+use Filament\{
+    Pages,
+    Panel,
+    PanelProvider,
+    Support\Colors\Color
+};
+use App\Filament\Pages\{
+    PrivacyPolicyPage,
+    TermsConditionPage
+};
+use Filament\Http\Middleware\{
+    Authenticate,
+    AuthenticateSession,
+    DisableBladeIconComponents,
+    DispatchServingFilamentEvent
+};
+use Illuminate\Cookie\Middleware\{
+    EncryptCookies,
+    AddQueuedCookiesToResponse
+};
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,6 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -34,6 +46,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                PrivacyPolicyPage::class,
+                TermsConditionPage::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->middleware([
