@@ -18,4 +18,12 @@ class Category extends Model
         'sku_count',
         'is_featured',
     ];
+
+    /**
+     * Relationship: A category has many products.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

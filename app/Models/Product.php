@@ -28,6 +28,15 @@ class Product extends Model
         'is_featured' => 'boolean',
     ];
 
+    /**
+     * Ensure custom accessors are included in JSON responses
+     */
+    protected $appends = [
+        'compositions_list',
+        'full_pack_info',
+        'type_label',
+    ];
+
     const TYPES = [
         'tablet' => 'Tablet',
         'capsule' => 'Capsule',
@@ -89,5 +98,13 @@ class Product extends Model
     {
         $parts = array_filter([$this->pack, $this->size, $this->packing]);
         return implode(' | ', $parts);
+    }
+
+    /**
+     * Accessor: Get user-friendly type label.
+     */
+    public function getTypeLabelAttribute()
+    {
+        return self::TYPES[$this->type] ?? ucfirst($this->type);
     }
 }

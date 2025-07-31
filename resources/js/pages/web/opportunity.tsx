@@ -83,7 +83,7 @@ export default function OpportunityPage() {
                                         <Award className="w-8 h-8 text-white" />
                                     </div>
                                     <h3 className="font-bold mb-2">Quality Products</h3>
-                                    <p className="text-sm text-gray-600">ISO & WHO-GMP certified formulations</p>
+                                    <p className="text-sm text-gray-600">ISOcertified formulations</p>
                                 </CardContent>
                             </Card>
                             <Card className="text-center hover:shadow-lg transition-shadow">

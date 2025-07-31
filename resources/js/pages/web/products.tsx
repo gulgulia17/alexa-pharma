@@ -1,11 +1,14 @@
-import { Link, Head } from "@inertiajs/react"
+import { Link, usePage, Head } from "@inertiajs/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Pill, Beaker, Syringe, Leaf, Search, Download, ArrowRight } from "lucide-react"
 import HomeLayout from '@/layouts/home-layout';
+import * as Icons from "lucide-react";
 
-export default function ProductsPage() {
+export default function ProductsPage({ categories, products }: any) {
+    const { props } = usePage();
+    const settings: any = props.settings;
     return (
         <HomeLayout>
             <Head title="Products" />
@@ -69,117 +72,32 @@ export default function ProductsPage() {
                             Product Categories
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#1E62A2] to-[#37A7DF] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <Pill className="w-10 h-10 text-white" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Tablets & Capsules</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Comprehensive range of solid dosage forms including antibiotics, analgesics, antacids, and specialty
-                                        formulations.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">150+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/tablets-capsules">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                            {categories?.length ? (
+                                categories.map((category: any, index: number) => {
+                                    const LucideIcons = Icons as unknown as Record<string, React.ComponentType<any>>;
+                                    const IconComponent = LucideIcons[category.icon] || LucideIcons["Pill"];
 
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#37A7DF] to-[#91C2E5] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <Beaker className="w-10 h-10 text-white" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Syrups & Dry Syrups</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Liquid formulations for all age groups including pediatric syrups, cough syrups, and antibiotic
-                                        suspensions.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">80+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/syrups">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#91C2E5] to-[#1E62A2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <Syringe className="w-10 h-10 text-white" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Injections</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Injectable pharmaceutical solutions including antibiotics, analgesics, and specialty therapeutic
-                                        injections.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">50+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/injections">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#1E62A2] to-[#91C2E5] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <Leaf className="w-10 h-10 text-white" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Nutraceuticals</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Health and wellness supplements including vitamins, minerals, protein supplements, and herbal
-                                        formulations.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">60+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/nutraceuticals">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#37A7DF] to-[#1E62A2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <span className="text-3xl">🧴</span>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Ointments & Solutions</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Topical formulations including gels, creams, ointments, and medicated soaps for external applications.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">40+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/ointments">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                                <CardContent className="p-8 text-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                        <span className="text-3xl">📦</span>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">Other Preparations</h3>
-                                    <p className="text-gray-600 mb-6">
-                                        Specialized formulations including ORS, energy drinks, probiotics, and other therapeutic preparations.
-                                    </p>
-                                    <div className="text-sm text-gray-500 mb-6">30+ SKUs Available</div>
-                                    <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                        <Link href="/products/others">
-                                            View Products <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Link>
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                                    return (
+                                        <Card className="hover:shadow-xl transition-all duration-300 group cursor-pointer" key={index}>
+                                            <CardContent className="p-8 text-center">
+                                                <div className="w-20 h-20 bg-gradient-to-br from-[#1E62A2] to-[#37A7DF] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                                    <IconComponent className="w-10 h-10 text-white" />
+                                                </div>
+                                                <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">{category.name}</h3>
+                                                <p className="text-gray-600 mb-6">
+                                                    {category.description}
+                                                </p>
+                                                <div className="text-sm text-gray-500 mb-6">{category.products_count}+ SKUs Available</div>
+                                                <Button asChild className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
+                                                    <Link href={route('product.show', category.slug)}>
+                                                        View Products <ArrowRight className="ml-2 w-4 h-4" />
+                                                    </Link>
+                                                </Button>
+                                            </CardContent>
+                                        </Card>
+                                    )
+                                })
+                            ) : null}
                         </div>
                     </div>
                 </section>
@@ -191,77 +109,47 @@ export default function ProductsPage() {
                             Featured Products
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <Card className="hover:shadow-lg transition-shadow relative">
-                                <CardContent className="p-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="font-bold text-lg">SAFE-100</h3>
-                                        <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Tablet</span>
-                                    </div>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Composition:</strong> Cefixime I.P.
-                                    </p>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Strength:</strong> 100 mg
-                                    </p>
-                                    <p className="text-gray-600 mb-4">
-                                        <strong>Pack:</strong> 10x10 Alu-Alu
-                                    </p>
-                                    <Button
-                                        variant="outline"
-                                        className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent absolute bottom-5 w-[90%]"
-                                    >
-                                        Enquire Now
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-lg transition-shadow">
-                                <CardContent className="p-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="font-bold text-lg">LYCOLIFE</h3>
-                                        <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Syrup</span>
-                                    </div>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Composition:</strong> Lycopene, Multivitamins & Multiminerals
-                                    </p>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Pack:</strong> 200 ml
-                                    </p>
-                                    <p className="text-gray-600 mb-4">
-                                        <strong>Packing:</strong> Outer
-                                    </p>
-                                    <Button
-                                        variant="outline"
-                                        className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
-                                    >
-                                        Enquire Now
-                                    </Button>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="hover:shadow-lg transition-shadow relative">
-                                <CardContent className="p-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="font-bold text-lg">RD-COBAL</h3>
-                                        <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Injection</span>
-                                    </div>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Composition:</strong> Methylcobalamin + Pyridoxine HCL
-                                    </p>
-                                    <p className="text-gray-600 mb-2">
-                                        <strong>Strength:</strong> 1500 mcg + 100 mg
-                                    </p>
-                                    <p className="text-gray-600 mb-4">
-                                        <strong>Pack:</strong> Dispo Pack
-                                    </p>
-                                    <Button
-                                        variant="outline"
-                                        className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent absolute bottom-5 w-[90%]"
-                                    >
-                                        Enquire Now
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                            {products?.length ? (
+                                products.map((product: any, index: number) => {
+                                    return (
+                                        <Card className="hover:shadow-lg transition-shadow relative" key={index}>
+                                            <CardContent className="p-6">
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <h3 className="font-bold text-lg">{product.name}</h3>
+                                                    <span className="text-sm bg-[#37A7DF] text-white px-2 py-1 rounded">Tablet</span>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p className="text-gray-600 mb-4">
+                                                        <strong>Composition:</strong> {product.compositions_list}
+                                                    </p>
+                                                    <p className="text-gray-600 mb-4">
+                                                        <strong>Size:</strong> {product.pack}
+                                                    </p>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p className="text-gray-600 mb-4">
+                                                        <strong>Pack:</strong> {product.size}
+                                                    </p>
+                                                    <p className="text-gray-600 mb-4">
+                                                        <strong>Packing:</strong> {product.packing}
+                                                    </p>
+                                                </div>
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent absolute bottom-5 w-[90%]"
+                                                    onClick={() => {
+                                                        const phone = settings?.phone?.replace(/\D/g, "");
+                                                        const message = `Hello,%0A%0AI want to know more about *${product.name}* - of category *${product?.category?.name}*`;
+                                                        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+                                                    }}
+                                                >
+                                                    Enquire Now
+                                                </Button>
+                                            </CardContent>
+                                        </Card>
+                                    )
+                                })
+                            ) : null}
                         </div>
                     </div>
                 </section>

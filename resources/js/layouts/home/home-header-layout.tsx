@@ -6,8 +6,10 @@ import { Link, usePage } from '@inertiajs/react';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false)
-    const page = usePage();
-    const pathname = page.url
+    const {url, props} = usePage();
+    const pathname = url
+    const settings: any = props.settings;
+    const awards: any = props.awards;
 
     const navigation = [
         { name: "Home", href: "/" },
@@ -33,15 +35,19 @@ export default function Header() {
                         <div className="flex items-center space-x-6">
                             <div className="flex items-center">
                                 <Phone className="w-4 h-4 mr-2" />
-                                <span>+91 9173636128</span>
+                                <a href={`tel:${settings?.phone}`}>{settings?.phone}</a>
                             </div>
                             <div className="flex items-center">
                                 <Mail className="w-4 h-4 mr-2" />
-                                <span>alexaindia121@gmail.com</span>
+                                <a href={`mail:${settings?.email}`}>{settings?.email}</a>
                             </div>
                         </div>
                         <div className="hidden md:block">
-                            <span>ISO 9001:2015 Certified | WHO-GMP Compliant</span>
+                            {awards?.length > 0 && (
+                                <span>
+                                    {awards.map((a: any) => a.title).join(' | ')}
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

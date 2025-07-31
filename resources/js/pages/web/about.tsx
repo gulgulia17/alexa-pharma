@@ -37,7 +37,6 @@ export default function HomePage() {
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
                             Dedicated to High-Quality, Affordable Healthcare
                         </h1>
-                        <p className="text-xl lg:text-2xl mb-8 opacity-90">ISO 9001:2015 Certified | WHO-GMP Facilities</p>
                         <Button size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
                             Explore Our Journey
                         </Button>

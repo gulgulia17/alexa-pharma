@@ -2,10 +2,14 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Http\Request;
+use App\Models\About;
+use App\Models\Award;
+use App\Models\Setting;
 use Inertia\Middleware;
+use App\Models\Category;
 use Tighten\Ziggy\Ziggy;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Inspiring;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -46,11 +50,15 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'ziggy' => fn (): array => [
+            'ziggy' => fn(): array => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'settings' => Setting::first(),
+            'about' => About::first(),
+            'categories' => Category::where('is_featured', 1)->get(),
+            'awards' => Award::where('is_featured', 1)->get(),
         ];
     }
 }

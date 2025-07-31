@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Head, Link } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,20 +13,29 @@ export default function SearchPage() {
     const [results, setResults] = useState<Product[]>([])
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        const delayedSearch = setTimeout(() => {
-            if (query.trim()) {
-                setIsLoading(true)
-                const searchResults = searchProducts(query)
-                setResults(searchResults)
-                setIsLoading(false)
-            } else {
-                setResults([])
-            }
-        }, 300)
+        const { props } = usePage();
+        const settings: any = props.settings;
 
-        return () => clearTimeout(delayedSearch)
-    }, [query])
+    useEffect(() => {
+        if (!query.trim()) {
+            setResults([]);
+            return;
+        }
+
+        const fetchResults = async () => {
+            try {
+                setIsLoading(true);
+                const searchResults = await searchProducts(query);
+                setResults(searchResults);
+            } catch (err) {
+                console.error("Search error:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchResults();
+    }, [query]);
 
     return (
         <HomeLayout>
@@ -89,7 +98,7 @@ export default function SearchPage() {
                                                 {/* Product Image */}
                                                 <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                                     <img
-                                                        src={product.image || "/placeholder.svg"}
+                                                        src={product.image ? `/storage/${product.image}` : `https://placehold.co/500x500?text=${product.name}`}
                                                         alt={product.name}
                                                         className="w-16 h-16 object-contain"
                                                     />
@@ -100,39 +109,48 @@ export default function SearchPage() {
                                                     <div className="flex items-center justify-between mb-3">
                                                         <h3 className="text-xl font-bold text-[#1E62A2]">{product.name}</h3>
                                                         <Badge variant="outline" className="ml-2">
-                                                            {product.type}
+                                                            {product.type_label}
                                                         </Badge>
                                                     </div>
 
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                                         <div>
                                                             <span className="text-sm font-medium text-gray-700">Composition:</span>
-                                                            <p className="text-sm text-gray-600">{product.composition}</p>
+                                                            <p className="text-sm text-gray-600">{product.compositions}</p>
                                                         </div>
 
-                                                        {product.strength && (
+                                                        {product.pack && (
                                                             <div>
-                                                                <span className="text-sm font-medium text-gray-700">Strength:</span>
-                                                                <p className="text-sm text-gray-600">{product.strength}</p>
+                                                                <span className="text-sm font-medium text-gray-700">Size:</span>
+                                                                <p className="text-sm text-gray-600">{product.pack}</p>
                                                             </div>
                                                         )}
 
-                                                        <div>
-                                                            <span className="text-sm font-medium text-gray-700">Pack:</span>
-                                                            <p className="text-sm text-gray-600">{product.pack}</p>
-                                                        </div>
+                                                        {product.size && (
+                                                            <div>
+                                                                <span className="text-sm font-medium text-gray-700">Pack:</span>
+                                                                <p className="text-sm text-gray-600">{product.size}</p>
+                                                            </div>
+                                                        )}
 
-                                                        <div>
-                                                            <span className="text-sm font-medium text-gray-700">Packing:</span>
-                                                            <p className="text-sm text-gray-600">{product.packing}</p>
-                                                        </div>
+                                                        {product.packing && (
+                                                            <div>
+                                                                <span className="text-sm font-medium text-gray-700">Packing:</span>
+                                                                <p className="text-sm text-gray-600">{product.packing}</p>
+                                                            </div>
+                                                        )}
                                                     </div>
 
                                                     <div className="flex items-center justify-between">
                                                         <Badge variant="secondary" className="bg-[#91C2E5] text-[#1E62A2]">
-                                                            {product.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                                                            {product?.category?.name.replace("-", " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
                                                         </Badge>
-                                                        <Button size="sm" className="bg-[#1E62A2] hover:bg-[#1E62A2]/90">
+                                                        <Button size="sm" className="bg-[#1E62A2] hover:bg-[#1E62A2]/90"
+                                                            onClick={() => {
+                                                                const phone = settings?.phone?.replace(/\D/g, "");
+                                                                const message = `Hello,%0A%0AI want to know more about *${product.name}* - of category *${product?.category?.name}*`;
+                                                                window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+                                                            }}>
                                                             Enquire Now
                                                         </Button>
                                                     </div>

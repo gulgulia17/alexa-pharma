@@ -1,6 +1,14 @@
 import { Phone, Mail, MapPin, Globe } from "lucide-react"
+import { usePage, Link } from '@inertiajs/react';
 
 export default function Footer() {
+
+    const { props } = usePage();
+    const settings = props.settings;
+    const about = props.about;
+    const categories = props.categories;
+    const awards = props.awards;
+
     return (
         <footer className="bg-[#1E62A2] text-white">
             <div className="container mx-auto px-4 py-12">
@@ -10,7 +18,7 @@ export default function Footer() {
                         <div className="mb-4">
                             <div className="w-[8rem] bg-white">
                                 <img
-                                    src="/logo-full.png"
+                                    src={`/storage/${settings?.logo}`}
                                     alt="Alexa Biopharma"
                                     width={180}
                                     height={70}
@@ -19,12 +27,14 @@ export default function Footer() {
                             </div>
                         </div>
                         <p className="text-white/80 mb-4">
-                            A trusted name in Indian pharmaceuticals, committed to providing high-quality, affordable healthcare
-                            solutions.
+                            {about?.who_we_are}
                         </p>
                         <div className="flex space-x-2">
-                            <div className="bg-white/20 rounded px-3 py-1 text-sm">ISO 9001:2015</div>
-                            <div className="bg-white/20 rounded px-3 py-1 text-sm">WHO-GMP</div>
+                            {awards?.length ? (
+                                awards.map((award: any, index: number) => (
+                                    <div key={index} className="bg-white/20 rounded px-3 py-1 text-sm">{award.title}</div>
+                                ))
+                            ) : null}
                         </div>
                     </div>
 
@@ -59,26 +69,18 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Our Products</h4>
                         <ul className="space-y-2">
-                            <li>
-                                <a href="/products/tablets-capsules" className="text-white/80 hover:text-white transition-colors">
-                                    Tablets & Capsules
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/products/syrups" className="text-white/80 hover:text-white transition-colors">
-                                    Syrups & Dry Syrups
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/products/injections" className="text-white/80 hover:text-white transition-colors">
-                                    Injections
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/products/nutraceuticals" className="text-white/80 hover:text-white transition-colors">
-                                    Nutraceuticals
-                                </a>
-                            </li>
+                            {categories?.length ? (
+                                categories.map((category: any, index: number) => (
+                                    <li key={index}>
+                                        <Link
+                                            href={route('product.show', category.slug)}
+                                            className="text-white/80 hover:text-white transition-colors"
+                                        >
+                                            {category.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : null}
                         </ul>
                     </div>
 
@@ -88,15 +90,15 @@ export default function Footer() {
                         <div className="space-y-3">
                             <div className="flex items-start">
                                 <Phone className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                                <span className="text-white/80">+91 9173636128</span>
+                                <a href={`tel:${settings?.phone}`} className="text-white/80">{settings?.phone}</a>
                             </div>
                             <div className="flex items-start">
                                 <Mail className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                                <span className="text-white/80">alexaindia121@gmail.com</span>
+                                <a href={`mail:${settings?.email}`} className="text-white/80">{settings?.email}</a>
                             </div>
                             <div className="flex items-start">
                                 <MapPin className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                                <span className="text-white/80">Gujarat, India</span>
+                                <span className="text-white/80">{settings?.address}</span>
                             </div>
                             <div className="flex items-start">
                                 <Globe className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
