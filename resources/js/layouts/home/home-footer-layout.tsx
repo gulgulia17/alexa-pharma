@@ -4,10 +4,10 @@ import { usePage, Link } from '@inertiajs/react';
 export default function Footer() {
 
     const { props } = usePage();
-    const settings = props.settings;
-    const about = props.about;
-    const categories = props.categories;
-    const awards = props.awards;
+    const settings: any = props.settings;
+    const about: any = props.about;
+    const categories: any = props.categories;
+    const awards: any = props.awards;
 
     return (
         <footer className="bg-[#1E62A2] text-white">
@@ -27,7 +27,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <p className="text-white/80 mb-4">
-                            {about?.who_we_are}
+                            {settings?.footer_text}
                         </p>
                         <div className="flex space-x-2">
                             {awards?.length ? (

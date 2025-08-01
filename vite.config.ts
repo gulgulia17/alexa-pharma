@@ -22,4 +22,34 @@ export default defineConfig({
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
+    build: {
+        chunkSizeWarningLimit: 1000, // Raise the warning threshold to 1MB
+        rollupOptions: {
+            output: {
+                // Split vendor libraries into separate chunks
+                manualChunks: {
+                    react: ['react', 'react-dom'],
+                    inertia: ['@inertiajs/react'],
+                    radix: [
+                        '@radix-ui/react-avatar',
+                        '@radix-ui/react-checkbox',
+                        '@radix-ui/react-collapsible',
+                        '@radix-ui/react-dialog',
+                        '@radix-ui/react-dropdown-menu',
+                        '@radix-ui/react-label',
+                        '@radix-ui/react-navigation-menu',
+                        '@radix-ui/react-select',
+                        '@radix-ui/react-separator',
+                        '@radix-ui/react-slot',
+                        '@radix-ui/react-toggle',
+                        '@radix-ui/react-toggle-group',
+                        '@radix-ui/react-tooltip',
+                    ],
+                    lucide: ['lucide-react'],
+                    tailwind: ['tailwind-merge', 'tailwindcss-animate'],
+                    utils: ['clsx', 'class-variance-authority'],
+                },
+            },
+        },
+    },
 });

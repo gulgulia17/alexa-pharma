@@ -24,7 +24,6 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'compositions' => 'array',
         'is_featured' => 'boolean',
     ];
 
@@ -32,7 +31,6 @@ class Product extends Model
      * Ensure custom accessors are included in JSON responses
      */
     protected $appends = [
-        'compositions_list',
         'full_pack_info',
         'type_label',
     ];
@@ -81,14 +79,6 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * Accessor: Get compositions as comma-separated string.
-     */
-    public function getCompositionsListAttribute()
-    {
-        return $this->compositions ? implode(', ', $this->compositions) : '';
     }
 
     /**

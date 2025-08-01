@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->enum('type', ['tablet', 'capsule', 'syrup', 'dry_syrup', 'injection', 'ointment', 'solution', 'nutraceutical', 'other_preparation'])->nullable();
-            $table->json('compositions')->nullable();
+            $table->longText('compositions')->nullable();
             $table->string('pack')->nullable();
             $table->string('size')->nullable();
             $table->string('packing')->nullable();

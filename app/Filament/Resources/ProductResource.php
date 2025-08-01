@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 
 class ProductResource extends Resource
 {
@@ -36,11 +37,11 @@ class ProductResource extends Resource
                 ->default('tablet')
                 ->required(),
 
-            // JSON compositions as tags input
-            Forms\Components\TagsInput::make('compositions')
-                ->placeholder('Enter active ingredients...')
-                ->suggestions(['Paracetamol', 'Cefixime', 'Azithromycin'])
-                ->helperText('Add multiple compositions'),
+            TinyEditor::make('compositions')
+                ->label('Compositions')
+                ->placeholder('Enter ingredients here...')
+                ->profile('bold_italic_table')
+                ->columnSpanFull(),
 
             Forms\Components\TextInput::make('pack')
                 ->label('Pack (e.g., 100mg)')
