@@ -36,15 +36,18 @@ class Product extends Model
     ];
 
     const TYPES = [
-        'tablet' => 'Tablet',
         'capsule' => 'Capsule',
-        'syrup' => 'Syrup',
+        'drop' => 'Drop',
         'dry_syrup' => 'Dry Syrup',
         'injection' => 'Injection',
-        'ointment' => 'Ointment',
-        'solution' => 'Solution',
+        'lotion' => 'Lotion',
         'nutraceutical' => 'Nutraceutical',
+        'ointment' => 'Ointment',
         'other_preparation' => 'Other Preparation',
+        'solution' => 'Solution',
+        'suspension' => 'Suspension',
+        'syrup' => 'Syrup',
+        'tablet' => 'Tablet',
     ];
 
     /**
