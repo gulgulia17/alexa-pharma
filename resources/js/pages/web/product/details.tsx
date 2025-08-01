@@ -21,6 +21,33 @@ const PRODUCT_TYPES: Record<string, string> = {
     other_preparation: "Other Preparation",
 };
 
+function cleanCompositionHTML(html: string) {
+  return html
+    .replace(/style="[^"]*"/gi, "")
+    .replace(/\s?(width|height|border)="[^"]*"/gi, "")
+    .replace(/<tr[^>]*>(\s*<td[^>]*>\s*<\/td>\s*)*<\/tr>/gi, ""); // removes empty rows
+}
+
+function normalizeTable(html: string) {
+  return cleanCompositionHTML(html).replace(
+    /<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>/gs,
+    (_, left, right) => {
+      const leftLines = left.split(/<br\s*\/?>/i).map((l) => l.trim());
+      const rightLines = right.split(/<br\s*\/?>/i).map((l) => l.trim());
+
+      // Build proper rows
+      let rows = leftLines
+        .map(
+          (l, i) =>
+            `<tr><td>${l}</td><td>${rightLines[i] || ""}</td></tr>`
+        )
+        .join("");
+
+      return rows;
+    }
+  );
+}
+
 export default function CategoryPage({ category, products }: any) {
     const { props } = usePage();
     const settings: any = props.settings;
@@ -120,17 +147,22 @@ export default function CategoryPage({ category, products }: any) {
                     <div className="container mx-auto px-4">
                         {viewMode === "grid" ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                {products.map((product) => (
-                                    <Card key={product.id} className="hover:shadow-lg transition-all duration-300 group">
-                                        <CardContent className="p-6">
+                                {products.map((product: any) => (
+                                    <Card
+                                        key={product.id}
+                                        className="hover:shadow-lg transition-all duration-300 group flex flex-col h-full"
+                                    >
+                                        <CardContent className="p-6 flex flex-col h-full">
+                                            {/* Image */}
                                             <div className="aspect-square bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
                                                 <img
                                                     src={product.image ? `/storage/${product.image}` : `https://placehold.co/500x500?text=${product.name}`}
                                                     alt={product.name}
-                                                    className="w-50 h-50 object-contain"
+                                                    className="w-40 h-40 object-contain"
                                                 />
                                             </div>
 
+                                            {/* Title & Badge */}
                                             <div className="flex items-center justify-between mb-3">
                                                 <h3 className="font-bold text-lg text-[#1E62A2]">{product.name}</h3>
                                                 <Badge variant="outline" className="text-xs">
@@ -138,21 +170,8 @@ export default function CategoryPage({ category, products }: any) {
                                                 </Badge>
                                             </div>
 
-                                            <div className="space-y-2 mb-4">
-                                                {product.compositions_list && (
-                                                    <div>
-                                                        <span className="text-sm font-medium text-gray-700">Composition:</span>
-                                                        <p className="text-sm text-gray-600 line-clamp-2">{product.compositions_list}</p>
-                                                    </div>
-                                                )}
-
-                                                {product.pack && (
-                                                    <div>
-                                                        <span className="text-sm font-medium text-gray-700">Pack:</span>
-                                                        <p className="text-sm text-gray-600">{product.pack}</p>
-                                                    </div>
-                                                )}
-
+                                            {/* Info Section */}
+                                            <div className="space-y-2 mb-4 flex-1">
                                                 <div className="flex justify-between">
                                                     {product.size && (
                                                         <div>
@@ -160,7 +179,6 @@ export default function CategoryPage({ category, products }: any) {
                                                             <p className="text-sm text-gray-600">{product.size}</p>
                                                         </div>
                                                     )}
-
                                                     {product.packing && (
                                                         <div>
                                                             <span className="text-sm font-medium text-gray-700">Packing:</span>
@@ -168,24 +186,43 @@ export default function CategoryPage({ category, products }: any) {
                                                         </div>
                                                     )}
                                                 </div>
+
+                                                {product.compositions && (
+                                                    <div>
+                                                        <span className="text-sm font-medium text-gray-700">Composition:</span>
+                                                        <div className="composition-table mt-2">
+                                                            <div
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: normalizeTable(product.compositions),
+                                                                }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            <Button className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90" size="sm"
-                                                onClick={() => {
-                                                    const phone = settings?.phone?.replace(/\D/g, "");
-                                                    const message = `Hello,%0A%0AI want to know more about *${product.name}* - of category *${category?.name}*`;
-                                                    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-                                                }}
-                                            >
-                                                Enquire Now
-                                            </Button>
+                                            {/* Button aligned bottom */}
+                                            <div className="mt-auto">
+                                                <Button
+                                                    className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90"
+                                                    size="sm"
+                                                    onClick={() => {
+                                                        const phone = settings?.phone?.replace(/\D/g, "");
+                                                        const message = `Hello,%0A%0AI want to know more about *${product.name}* - of category *${category?.name}*`;
+                                                        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+                                                    }}
+                                                >
+                                                    Enquire Now
+                                                </Button>
+                                            </div>
                                         </CardContent>
                                     </Card>
                                 ))}
                             </div>
+
                         ) : (
                             <div className="space-y-4">
-                                {products.map((product) => (
+                                {products.map((product: any) => (
                                     <Card key={product.id} className="hover:shadow-lg transition-shadow">
                                         <CardContent className="p-6">
                                             <div className="flex items-start gap-6">

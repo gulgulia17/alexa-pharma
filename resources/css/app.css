@@ -1,9 +1,9 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/poppins/400.css";
-@import "@fontsource/poppins/500.css";
-@import "@fontsource/poppins/600.css";
-@import "@fontsource/poppins/700.css";
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
 
 @import 'tailwindcss';
 
@@ -145,4 +145,38 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+.composition-table table {
+    @apply w-full rounded-lg border border-gray-300 bg-white text-sm;
+    border-collapse: collapse;
+}
+
+.composition-table tr {
+    @apply border-b border-gray-300;
+}
+
+.composition-table tr:last-child {
+    @apply border-b-0;
+}
+
+.composition-table td {
+    @apply border border-gray-300 px-3 py-1.5 text-gray-700;
+    vertical-align: middle;
+}
+
+.composition-table td:first-child {
+    @apply font-medium text-gray-900;
+}
+
+.composition-table tr:nth-child(even) {
+    @apply bg-gray-50;
+}
+
+.composition-table tr:hover {
+    @apply bg-gray-100;
+}
+
+.composition-table tr td:first-child span {
+  @apply font-medium text-gray-900;
 }
