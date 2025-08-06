@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Search, Grid, List } from "lucide-react"
+import { normalizeTable } from "@/lib/utils";
 import * as Icons from "lucide-react";
 
 import HomeLayout from '@/layouts/home-layout';
@@ -20,33 +21,6 @@ const PRODUCT_TYPES: Record<string, string> = {
     nutraceutical: "Nutraceutical",
     other_preparation: "Other Preparation",
 };
-
-function cleanCompositionHTML(html: string) {
-  return html
-    .replace(/style="[^"]*"/gi, "")
-    .replace(/\s?(width|height|border)="[^"]*"/gi, "")
-    .replace(/<tr[^>]*>(\s*<td[^>]*>\s*<\/td>\s*)*<\/tr>/gi, ""); // removes empty rows
-}
-
-function normalizeTable(html: string) {
-  return cleanCompositionHTML(html).replace(
-    /<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>/gs,
-    (_, left, right) => {
-      const leftLines = left.split(/<br\s*\/?>/i).map((l) => l.trim());
-      const rightLines = right.split(/<br\s*\/?>/i).map((l) => l.trim());
-
-      // Build proper rows
-      let rows = leftLines
-        .map(
-          (l, i) =>
-            `<tr><td>${l}</td><td>${rightLines[i] || ""}</td></tr>`
-        )
-        .join("");
-
-      return rows;
-    }
-  );
-}
 
 export default function CategoryPage({ category, products }: any) {
     const { props } = usePage();
@@ -154,12 +128,13 @@ export default function CategoryPage({ category, products }: any) {
                                     >
                                         <CardContent className="p-6 flex flex-col h-full">
                                             {/* Image */}
-                                            <div className="aspect-square bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                                                <img
-                                                    src={product.image ? `/storage/${product.image}` : `https://placehold.co/500x500?text=${product.name}`}
-                                                    alt={product.name}
-                                                    className="w-40 h-40 object-contain"
-                                                />
+                                            <div
+                                                className="aspect-square bg-gray-100 rounded-lg mb-4 flex items-center justify-center bg-center bg-contain bg-no-repeat"
+                                                style={{
+                                                    backgroundImage: `url(${product.image ? `/storage/${product.image}` : `https://placehold.co/500x500?text=${product.name}`})`,
+                                                    backgroundSize: "cover"
+                                                }}
+                                            >
                                             </div>
 
                                             {/* Title & Badge */}
@@ -243,20 +218,6 @@ export default function CategoryPage({ category, products }: any) {
                                                     </div>
 
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                                        {product.compositions_list && (
-                                                            <div>
-                                                                <span className="text-sm font-medium text-gray-700">Composition:</span>
-                                                                <p className="text-sm text-gray-600">{product.compositions_list}</p>
-                                                            </div>
-                                                        )}
-
-                                                        {product.pack && (
-                                                            <div>
-                                                                <span className="text-sm font-medium text-gray-700">Pack:</span>
-                                                                <p className="text-sm text-gray-600">{product.pack}</p>
-                                                            </div>
-                                                        )}
-
                                                         {product.size && (
                                                             <div>
                                                                 <span className="text-sm font-medium text-gray-700">Size:</span>
@@ -270,15 +231,31 @@ export default function CategoryPage({ category, products }: any) {
                                                                 <p className="text-sm text-gray-600">{product.packing}</p>
                                                             </div>
                                                         )}
+
+                                                        {product.compositions && (
+                                                            <div>
+                                                                <span className="text-sm font-medium text-gray-700">Composition:</span>
+                                                                <div className="composition-table mt-2">
+                                                                    <div
+                                                                        dangerouslySetInnerHTML={{
+                                                                            __html: normalizeTable(product.compositions),
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
 
-                                                    <div className="flex items-center justify-between">
-                                                        <Badge variant="secondary" className="bg-[#91C2E5] text-[#1E62A2]">
+                                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                                                        <Badge variant="secondary" className="bg-[#91C2E5] text-[#1E62A2] w-max">
                                                             {category?.name}
                                                         </Badge>
-                                                        <Button size="sm" className="bg-[#1E62A2] hover:bg-[#1E62A2]/90"
+
+                                                        <Button
+                                                            size="sm"
+                                                            className="bg-[#1E62A2] hover:bg-[#1E62A2]/90 w-full md:w-auto"
                                                             onClick={() => {
-                                                                const phone = settings?.phone?.replace(/\D/g, ""); // ✅ remove non-numeric chars
+                                                                const phone = settings?.phone?.replace(/\D/g, "");
                                                                 const message = `Hello,%0A%0AI want to know more about *${product.name}* - of category *${product.category?.name}*`;
                                                                 window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
                                                             }}

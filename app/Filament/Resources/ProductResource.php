@@ -74,11 +74,6 @@ class ProductResource extends Resource
 
             Tables\Columns\TextColumn::make('slug')->searchable(),
 
-            Tables\Columns\TextColumn::make('compositions_list')
-                ->label('Compositions')
-                ->limit(40)
-                ->tooltip(fn($record) => $record->compositions_list),
-
             Tables\Columns\TextColumn::make('full_pack_info')
                 ->label('Pack Info')
                 ->badge(),

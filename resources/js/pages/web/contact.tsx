@@ -6,41 +6,43 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock, Send, Building2, Globe, Users } from "lucide-react"
-import { Head } from "@inertiajs/react"
+import { Head, usePage, useForm } from "@inertiajs/react"
 import { useToast } from "@/hooks/use-toast"
 
 import HomeLayout from '@/layouts/home-layout';
 
 export default function ContactPage() {
     const { toast } = useToast()
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
+    const { props } = usePage();
+
+    const settings: any = props.settings;
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
     })
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        try {
-            toast({
-                title: "Message sent successfully",
-                description: "Thank you for contacting us. We'll get back to you soon.",
-            })
-            setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
-
-        } catch (error) {
-            console.error("Failed to submit contact form", error)
-            toast({
-                title: "Error submitting form",
-                description: "Check your internet connection or try again later.",
-            })
-        }
-    }
-
-    const handleInputChange = (field: string, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }))
+        post('/contact', {
+            preserveScroll: true,
+            onSuccess: () => {
+                toast({
+                    title: 'Message sent successfully',
+                    description: "Thank you for contacting us. We'll get back to you soon.",
+                })
+                reset()
+            },
+            onError: () => {
+                toast({
+                    title: 'Error submitting form',
+                    description: 'Please check your input and try again.',
+                })
+            },
+        })
     }
 
     return (
@@ -78,7 +80,9 @@ export default function ContactPage() {
                                 <CardContent className="p-6">
                                     <Phone className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Call Us</h3>
-                                    <p className="text-gray-600 mb-2">+91 9173636128</p>
+                                    <p className="text-gray-600 mb-2">
+                                        <a href={`tel:${settings.phone}`}>{settings.phone}</a>
+                                    </p>
                                     <p className="text-sm text-gray-500">Mon-Sat: 9:00 AM - 6:00 PM</p>
                                 </CardContent>
                             </Card>
@@ -86,7 +90,9 @@ export default function ContactPage() {
                                 <CardContent className="p-6">
                                     <Mail className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Email Us</h3>
-                                    <p className="text-gray-600 mb-2">alexaindia121@gmail.com</p>
+                                    <p className="text-gray-600 mb-2">
+                                        <a href={`mail:${settings.email}`}>{settings.email}</a>
+                                    </p>
                                     <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
                                 </CardContent>
                             </Card>
@@ -94,7 +100,7 @@ export default function ContactPage() {
                                 <CardContent className="p-6">
                                     <MapPin className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Head Office</h3>
-                                    <p className="text-gray-600 mb-2">Gujarat, India</p>
+                                    <p className="text-gray-600 mb-2">{settings.address}</p>
                                     <p className="text-sm text-gray-500">Corporate Headquarters</p>
                                 </CardContent>
                             </Card>
@@ -123,22 +129,26 @@ export default function ContactPage() {
                                                 <Label htmlFor="name">Full Name *</Label>
                                                 <Input
                                                     id="name"
-                                                    value={formData.name}
-                                                    onChange={(e) => handleInputChange("name", e.target.value)}
+                                                    value={data.name}
+                                                    onChange={(e) => setData('name', e.target.value)}
                                                     placeholder="Enter your full name"
+                                                    className={errors.name ? 'border-red-500' : ''}
                                                     required
                                                 />
+                                                {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
                                             </div>
                                             <div>
-                                                <Label htmlFor="email">Email Address *</Label>
+                                                <Label htmlFor="email">Email Address*</Label>
                                                 <Input
                                                     id="email"
                                                     type="email"
-                                                    value={formData.email}
-                                                    onChange={(e) => handleInputChange("email", e.target.value)}
+                                                    value={data.email}
+                                                    onChange={(e) => setData('email', e.target.value)}
                                                     placeholder="Enter your email"
+                                                    className={errors.email ? 'border-red-500' : ''}
                                                     required
                                                 />
+                                                {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
                                             </div>
                                         </div>
 
@@ -147,25 +157,31 @@ export default function ContactPage() {
                                                 <Label htmlFor="phone">Phone Number</Label>
                                                 <Input
                                                     id="phone"
-                                                    value={formData.phone}
-                                                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                                                    value={data.phone}
+                                                    onChange={(e) => setData('phone', e.target.value)}
                                                     placeholder="Enter your phone number"
+                                                    className={errors.phone ? 'border-red-500' : ''}
                                                 />
+                                                {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
                                             </div>
                                             <div>
                                                 <Label htmlFor="subject">Subject</Label>
-                                                <Select onValueChange={(value) => handleInputChange("subject", value)}>
-                                                    <SelectTrigger>
+                                                <Select
+                                                    value={data.subject}
+                                                    onValueChange={(val) => setData('subject', val)}
+                                                >
+                                                    <SelectTrigger className={errors.subject ? 'border-red-500' : ''}>
                                                         <SelectValue placeholder="Select subject" />
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectItem value="opportunity">Inquiry</SelectItem>
-                                                        <SelectItem value="products">Product Information</SelectItem>
-                                                        <SelectItem value="partnership">Business Partnership</SelectItem>
-                                                        <SelectItem value="support">Customer Support</SelectItem>
+                                                        <SelectItem value="products">Product Info</SelectItem>
+                                                        <SelectItem value="partnership">Partnership</SelectItem>
+                                                        <SelectItem value="support">Support</SelectItem>
                                                         <SelectItem value="other">Other</SelectItem>
                                                     </SelectContent>
                                                 </Select>
+                                                {errors.subject && <p className="text-sm text-red-500 mt-1">{errors.subject}</p>}
                                             </div>
                                         </div>
 
@@ -173,17 +189,18 @@ export default function ContactPage() {
                                             <Label htmlFor="message">Message *</Label>
                                             <Textarea
                                                 id="message"
-                                                value={formData.message}
-                                                onChange={(e) => handleInputChange("message", e.target.value)}
+                                                value={data.message}
+                                                onChange={(e) => setData('message', e.target.value)}
                                                 placeholder="Tell us how we can help you..."
                                                 rows={5}
+                                                className={errors.message ? 'border-red-500' : ''}
                                                 required
                                             />
+                                            {errors.message && <p className="text-sm text-red-500 mt-1">{errors.message}</p>}
                                         </div>
 
-                                        <Button type="submit" size="lg" className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                            <Send className="mr-2 w-5 h-5" />
-                                            Send Message
+                                        <Button type="submit" size="lg" className="w-full bg-[#1E62A2] hover:bg-[#1E62A2]/90" disabled={processing}>
+                                            <Send className="mr-2 w-5 h-5" /> Send Message
                                         </Button>
                                     </form>
                                 </CardContent>
@@ -202,16 +219,16 @@ export default function ContactPage() {
                                         <div className="space-y-2 text-sm">
                                             <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Founded:</span>
-                                                <span>2010+</span>
+                                                <span>{settings.founded}</span>
                                             </div>
                                             <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Headquarters:</span>
-                                                <span>Gujarat, India</span>
+                                                <span>{settings.address}</span>
                                             </div>
-                                            <div className="flex items-center">
+                                            {/* <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Products:</span>
                                                 <span>500+ SKUs</span>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -224,7 +241,7 @@ export default function ContactPage() {
                                             We have established a strong distribution network across India, serving customers in multiple states
                                             with plans for further expansion.
                                         </p>
-                                        <div className="grid grid-cols-2 gap-4 text-sm">
+                                        {/* <div className="grid grid-cols-2 gap-4 text-sm">
                                             <div>
                                                 <span className="font-semibold">Current Markets:</span>
                                                 <ul className="mt-2 space-y-1 text-gray-600">
@@ -243,7 +260,7 @@ export default function ContactPage() {
                                                     <li>• Tamil Nadu</li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </CardContent>
                                 </Card>
 
@@ -256,10 +273,10 @@ export default function ContactPage() {
                                             entrepreneur, MR, or ASM, we have opportunities for you.
                                         </p>
                                         <div className="space-y-2 text-sm">
-                                            <div className="flex items-center">
+                                            {/* <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Investment:</span>
                                                 <span>Starting from ₹50,000</span>
-                                            </div>
+                                            </div> */}
                                             <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Support:</span>
                                                 <span>Complete marketing assistance</span>
@@ -273,37 +290,40 @@ export default function ContactPage() {
                                             variant="outline"
                                             size="sm"
                                             className="mt-3 border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white bg-transparent"
+                                            onClick={() => {
+                                                const phone = settings?.phone?.replace(/\D/g, "");
+                                                const message = encodeURIComponent('Hello, I would like to know more about partnership opportunities with *ALEXA*.');
+                                                window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+                                            }}
                                         >
-                                            Download PDF
+                                            Contact Now
                                         </Button>
                                     </CardContent>
                                 </Card>
                             </div>
                         </div>
                     </div>
-                </section>
+                </section >
 
                 {/* Map Section */}
-                <section className="py-16 bg-gray-50">
+                < section className="py-16 bg-gray-50" >
                     <div className="container mx-auto px-4">
                         <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">Find Us</h2>
                         <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center text-white">
                             <MapPin className="w-16 h-16 mx-auto mb-6" />
                             <h3 className="text-2xl font-bold mb-4">Our Location</h3>
                             <p className="text-lg mb-4">
-                                Alexa Biopharma Pvt. Ltd.
-                                <br />
-                                Gujarat, India
+                                {settings.address}
                             </p>
                             <p className="opacity-90">
                                 Visit our corporate office to discuss partnership opportunities and learn more about our products.
                             </p>
                         </div>
                     </div>
-                </section>
+                </section >
 
                 {/* FAQ Section */}
-                <section className="py-16">
+                < section className="py-16" >
                     <div className="container mx-auto px-4">
                         <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">
                             Frequently Asked Questions
@@ -347,8 +367,8 @@ export default function ContactPage() {
                             </Card>
                         </div>
                     </div>
-                </section>
-            </div>
-        </HomeLayout>
+                </section >
+            </div >
+        </HomeLayout >
     )
 }

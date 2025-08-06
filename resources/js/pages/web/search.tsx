@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Search } from "lucide-react"
 import { searchProducts, type Product } from "@/lib/products-data"
+import { normalizeTable } from "@/lib/utils";
+
 import HomeLayout from '@/layouts/home-layout';
 
 export default function SearchPage() {
@@ -13,8 +15,8 @@ export default function SearchPage() {
     const [results, setResults] = useState<Product[]>([])
     const [isLoading, setIsLoading] = useState(false)
 
-        const { props } = usePage();
-        const settings: any = props.settings;
+    const { props } = usePage();
+    const settings: any = props.settings;
 
     useEffect(() => {
         if (!query.trim()) {
@@ -116,7 +118,13 @@ export default function SearchPage() {
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                                         <div>
                                                             <span className="text-sm font-medium text-gray-700">Composition:</span>
-                                                            <p className="text-sm text-gray-600">{product.compositions}</p>
+                                                            <div className="composition-table mt-2 text-sm text-gray-600">
+                                                                <div
+                                                                    dangerouslySetInnerHTML={{
+                                                                        __html: normalizeTable(product.compositions),
+                                                                    }}
+                                                                />
+                                                            </div>
                                                         </div>
 
                                                         {product.pack && (

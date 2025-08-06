@@ -1,4 +1,4 @@
-import { Head, Link } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,6 +10,7 @@ import {
     ArrowRight,
     Phone,
     Mail,
+    MapPin,
     Target,
     Heart,
     Handshake,
@@ -17,6 +18,9 @@ import {
 } from "lucide-react"
 
 export default function HomePage() {
+    const { props } = usePage();
+    const settings: any = props.settings;
+
     return (
         <HomeLayout>
             <Head title="Home" />
@@ -269,23 +273,28 @@ export default function HomePage() {
                                 <CardContent className="p-6">
                                     <Phone className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Call Us</h3>
-                                    <p className="text-gray-600">+91 9173636128</p>
+                                    <p className="text-gray-600 mb-2">
+                                        <a href={`tel:${settings.phone}`}>{settings.phone}</a>
+                                    </p>
+                                    <p className="text-sm text-gray-500">Mon-Sat: 9:00 AM - 6:00 PM</p>
                                 </CardContent>
                             </Card>
                             <Card className="text-center">
                                 <CardContent className="p-6">
                                     <Mail className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Email Us</h3>
-                                    <p className="text-gray-600">alexaindia121@gmail.com</p>
+                                    <p className="text-gray-600 mb-2">
+                                        <a href={`mail:${settings.email}`}>{settings.email}</a>
+                                    </p>
+                                    <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
                                 </CardContent>
                             </Card>
                             <Card className="text-center">
                                 <CardContent className="p-6">
-                                    <Download className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
-                                    <h3 className="font-semibold mb-2">Company Profile</h3>
-                                    <Button variant="outline" size="sm" className="border-[#1E62A2] text-[#1E62A2] bg-transparent">
-                                        Download PDF
-                                    </Button>
+                                    <MapPin className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
+                                    <h3 className="font-semibold mb-2">Visit Us</h3>
+                                    <p className="text-gray-600 mb-2">{settings.address}</p>
+                                    <p className="text-sm text-gray-500">Head Office</p>
                                 </CardContent>
                             </Card>
                         </div>

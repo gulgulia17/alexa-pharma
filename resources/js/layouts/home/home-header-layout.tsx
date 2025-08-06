@@ -6,7 +6,7 @@ import { Link, usePage } from '@inertiajs/react';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false)
-    const {url, props} = usePage();
+    const { url, props } = usePage();
     const pathname = url
     const settings: any = props.settings;
     const awards: any = props.awards;
@@ -100,8 +100,8 @@ export default function Header() {
                                 <Menu className="h-6 w-6" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px]">
-                            <div className="flex flex-col space-y-4 mt-8">
+                        <SheetContent side="right" className="w-[300px] px-6 py-8">
+                            <div className="flex flex-col space-y-6 mt-8">
                                 <div className="mb-6">
                                     <img
                                         src="/logo-full.png"
@@ -111,17 +111,23 @@ export default function Header() {
                                         className="h-10 w-auto object-contain"
                                     />
                                 </div>
-                                {navigation.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        href={item.href}
-                                        className={`text-lg font-medium transition-colors ${isActive(item.href) ? "text-[#1E62A2] font-bold" : "text-gray-700 hover:text-[#1E62A2]"
-                                            }`}
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
+
+                                <nav className="flex flex-col divide-y divide-gray-200">
+                                    {navigation.map((item) => (
+                                        <Link
+                                            key={item.name}
+                                            href={item.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className={`py-3 px-1 text-lg font-medium transition-colors ${isActive(item.href)
+                                                ? 'text-[#1E62A2] font-bold'
+                                                : 'text-gray-700 hover:text-[#1E62A2]'
+                                                }`}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    ))}
+                                </nav>
+
                                 <Button asChild className="bg-[#1E62A2] hover:bg-[#1E62A2]/90 mt-4">
                                     <Link href={route('opportunity')} onClick={() => setIsOpen(false)}>
                                         Get Opportunity
@@ -132,6 +138,6 @@ export default function Header() {
                     </Sheet>
                 </div>
             </div>
-        </header>
+        </header >
     )
 }

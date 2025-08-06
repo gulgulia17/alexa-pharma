@@ -113,10 +113,10 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-white/80 text-sm">© 2025 Alexa Biopharma Pvt. Ltd. All rights reserved.</p>
                         <div className="flex space-x-6 mt-4 md:mt-0">
-                            <a href="/privacy" className="text-white/80 hover:text-white text-sm transition-colors">
+                            <a href={route('privacy')} className="text-white/80 hover:text-white text-sm transition-colors">
                                 Privacy Policy
                             </a>
-                            <a href="/terms" className="text-white/80 hover:text-white text-sm transition-colors">
+                            <a href={route('terms')} className="text-white/80 hover:text-white text-sm transition-colors">
                                 Terms of Service
                             </a>
                         </div>

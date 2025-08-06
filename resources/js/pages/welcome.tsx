@@ -1,4 +1,4 @@
-import { Head, Link } from "@inertiajs/react"
+import { Head, usePage, Link } from "@inertiajs/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -26,7 +26,14 @@ interface Category {
     icon: keyof typeof Icons;
 }
 
-export default function HomePage({ settings, productCount, about, categories, awards, testimonials }: any) {
+export default function HomePage({ productCount, testimonials }: any) {
+    const { props } = usePage();
+
+    const settings: any = props.settings;
+    const about: any = props.about;
+    const categories: any = props.categories;
+    const awards: any = props.awards;
+
     return (
         <HomeLayout>
             <Head title="Home" />
@@ -235,7 +242,8 @@ export default function HomePage({ settings, productCount, about, categories, aw
                                                 <p className="text-gray-700 mb-4">
                                                     {testimonial.message}
                                                 </p>
-                                                <div className="font-semibold">- {testimonial.name}, {testimonial.location}</div>
+                                                <div className="font-semibold">- {testimonial.name}</div>
+                                                <div className="text-sm text-gray-500">{testimonial.location}</div>
                                             </CardContent>
                                         </Card>
                                     )
