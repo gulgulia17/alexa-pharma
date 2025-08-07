@@ -14,7 +14,8 @@ class ProductController extends Controller
     {
         return Inertia::render('web/products', [
             'categories' => Category::withCount('products')->get(),
-            'products' => Product::with('category')->where('is_featured', 1)->get()
+            'products' => Product::with('category')->where('is_featured', 1)->get(),
+            'sku_count' => Product::count()
         ]);
     }
 

@@ -6,7 +6,7 @@ import { Pill, Beaker, Syringe, Leaf, Search, Download, ArrowRight } from "lucid
 import HomeLayout from '@/layouts/home-layout';
 import * as Icons from "lucide-react";
 
-export default function ProductsPage({ categories, products }: any) {
+export default function ProductsPage({ categories, products,sku_count }: any) {
     const { props } = usePage();
     const settings: any = props.settings;
     return (
@@ -165,7 +165,7 @@ export default function ProductsPage({ categories, products }: any) {
                             </p>
                             <div className="flex flex-wrap justify-center gap-6">
                                 <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="font-bold text-lg">ISO 9001:2015</div>
+                                    <div className="font-bold text-lg">ISO</div>
                                     <div className="text-sm opacity-90">Certified</div>
                                 </div>
                                 <div className="bg-white/20 rounded-lg p-4">
@@ -173,7 +173,7 @@ export default function ProductsPage({ categories, products }: any) {
                                     <div className="text-sm opacity-90">Compliant</div>
                                 </div>
                                 <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="font-bold text-lg">500+</div>
+                                    <div className="font-bold text-lg">{sku_count}+</div>
                                     <div className="text-sm opacity-90">Product SKUs</div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@ export default function ProductsPage({ categories, products }: any) {
                         <p className="text-xl text-gray-600 mb-8">Let us help you find the right products for your market needs.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="bg-[#1E62A2] hover:bg-[#1E62A2]/90">
-                                Request Custom Quote
+                                <Link href={route('contact')}>Request Custom Quote</Link>
                             </Button>
                             <Button
                                 asChild
