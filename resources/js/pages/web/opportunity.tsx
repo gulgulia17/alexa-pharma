@@ -62,16 +62,17 @@ export default function OpportunityPage() {
             <Head title="Opportunity" />
             <div className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
-                    <div className="absolute inset-0 bg-black/10"></div>
+                <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/40"></div>
+
                     <div className="relative container mx-auto px-4 text-center">
+                        {/* Logo */}
                         <div className="mb-8">
                             <img
-                                src="/logo-only.png"
+                                src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                width={250}
-                                height={100}
-                                className="h-16 w-auto object-contain mx-auto bg-white"
+                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">Join Hands. Grow Together.</h1>
@@ -87,8 +88,14 @@ export default function OpportunityPage() {
                 {/* Why Partner With Us */}
                 <section className="py-16">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">
-                            Why Partner With Alexa Biopharma?
+                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins'] flex items-center justify-center gap-2">
+                            <span>Why Partner With</span>
+                            <img
+                                src={`/storage/${settings.logo}`}
+                                alt="Alexa Biopharma"
+                                className="h-[1em] w-auto inline-block align-middle"
+                            />
+                            <span>?</span>
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <Card className="text-center hover:shadow-lg transition-shadow">

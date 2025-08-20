@@ -20,27 +20,30 @@ import {
 export default function HomePage() {
     const { props } = usePage();
     const settings: any = props.settings;
+    const about: any = props.about;
 
     return (
         <HomeLayout>
             <Head title="Home" />
             <div className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
-                    <div className="absolute inset-0 bg-black/10"></div>
+                <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/40"></div>
+
                     <div className="relative container mx-auto px-4 text-center">
+                        {/* Logo */}
                         <div className="mb-8">
                             <img
-                                src="/logo-only.png"
+                                src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                width={300}
-                                height={120}
-                                className="h-16 w-auto object-contain mx-auto bg-white"
+                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
                             Dedicated to High-Quality, Affordable Healthcare
                         </h1>
+                        <p className="text-xl lg:text-2xl mb-8 opacity-90">ISO 9001:2015 Certified | WHO-GMP Facilities</p>
                         <Button size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
                             Explore Our Journey
                         </Button>
@@ -54,19 +57,12 @@ export default function HomePage() {
                             <div>
                                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1E62A2] mb-6 font-['Poppins']">Who We Are</h2>
                                 <p className="text-gray-700 mb-6 leading-relaxed">
-                                    Alexa Biopharma Pvt. Ltd. is a trusted name in the Indian pharmaceutical industry, headquartered in
-                                    Gujarat with a strong national presence. With over a decade of experience in healthcare, we have
-                                    established ourselves as a reliable partner for pharmaceutical distribution and opportunity opportunities.
-                                </p>
-                                <p className="text-gray-700 mb-6 leading-relaxed">
-                                    Our commitment to quality and innovation drives us to continuously expand our product portfolio and
-                                    strengthen our distribution network across India. We believe in building long-term partnerships that
-                                    benefit all stakeholders in the healthcare ecosystem.
+                                    {about.who_we_are}
                                 </p>
                                 <div className="flex flex-wrap gap-4">
                                     <Badge className="bg-[#1E62A2] text-white px-4 py-2">10+ Years Experience</Badge>
                                     <Badge className="bg-[#37A7DF] text-white px-4 py-2">Pan-India Presence</Badge>
-                                    <Badge className="bg-[#91C2E5] text-white px-4 py-2">500+ Products</Badge>
+                                    <Badge className="bg-[#91C2E5] text-white px-4 py-2">300+ Products</Badge>
                                 </div>
                             </div>
                             <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-8 text-center">
@@ -164,8 +160,13 @@ export default function HomePage() {
                 {/* Why Choose Alexa */}
                 <section className="py-16 bg-gray-50">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">
-                            Why Choose Alexa Biopharma
+                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins'] flex items-center justify-center gap-2">
+                            <span>Why Choose</span>
+                            <img
+                                src={`/storage/${settings.logo}`}
+                                alt="Alexa Biopharma"
+                                className="h-[1em] w-auto inline-block align-middle"
+                            />
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div className="flex items-start space-x-4">

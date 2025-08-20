@@ -6,7 +6,7 @@ import { Pill, Beaker, Syringe, Leaf, Search, Download, ArrowRight } from "lucid
 import HomeLayout from '@/layouts/home-layout';
 import * as Icons from "lucide-react";
 
-export default function ProductsPage({ categories, products,sku_count }: any) {
+export default function ProductsPage({ categories, products, sku_count }: any) {
     const { props } = usePage();
     const settings: any = props.settings;
     return (
@@ -14,16 +14,17 @@ export default function ProductsPage({ categories, products,sku_count }: any) {
             <Head title="Products" />
             <div className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20">
-                    <div className="absolute inset-0 bg-black/10"></div>
+                <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/40"></div>
+
                     <div className="relative container mx-auto px-4 text-center">
+                        {/* Logo */}
                         <div className="mb-8">
                             <img
-                                src="/logo-only.png"
+                                src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                width={250}
-                                height={100}
-                                className="h-16 w-auto object-contain mx-auto bg-white"
+                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">

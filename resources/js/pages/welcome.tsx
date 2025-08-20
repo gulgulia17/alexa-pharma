@@ -40,23 +40,33 @@ export default function HomePage({ productCount, testimonials }: any) {
             <div className="min-h-screen bg-white">
 
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-[#1E62A2] via-[#37A7DF] to-[#91C2E5] text-white py-20 lg:py-32">
-                    <div className="absolute inset-0 bg-black/10"></div>
+                <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/40"></div>
+
                     <div className="relative container mx-auto px-4 text-center">
+                        {/* Logo */}
                         <div className="mb-8">
                             <img
                                 src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                width={300}
-                                height={120}
-                                className="h-16 w-auto object-contain mx-auto bg-white"
+                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
-                        <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
+
+                        {/* Title */}
+                        <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins'] drop-shadow-lg">
                             {settings.title}
                         </h1>
+
+                        {/* Subtitle */}
+                        <p className="text-xl lg:text-2xl mb-8 opacity-95 drop-shadow">
+                            ISO 9001:2015 Certified | WHO-GMP Facilities
+                        </p>
+
+                        {/* Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button asChild size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
+                            <Button asChild size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100 shadow-md">
                                 <Link href="/products">Explore Products</Link>
                             </Button>
                             <Button
@@ -100,7 +110,7 @@ export default function HomePage({ productCount, testimonials }: any) {
                             <Card className="text-center">
                                 <CardContent className="p-6">
                                     <Package className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
-                                    <h3 className="font-semibold mb-2">{productCount}+ Product SKUs</h3>
+                                    <h3 className="font-semibold mb-2">300+ Product SKUs</h3>
                                     <p className="text-sm text-gray-600">Comprehensive product range</p>
                                 </CardContent>
                             </Card>
@@ -111,10 +121,17 @@ export default function HomePage({ productCount, testimonials }: any) {
                 {/* About Preview */}
                 <section className="py-16">
                     <div className="container mx-auto px-4">
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+
+                            {/* Left Section */}
                             <div>
-                                <h2 className="text-3xl lg:text-4xl font-bold text-[#1E62A2] mb-6 font-['Poppins']">
-                                    About Alexa Biopharma
+                                <h2 className="text-3xl lg:text-4xl font-bold text-[#1E62A2] mb-6 font-['Poppins'] flex items-center gap-3">
+                                    <span>About</span>
+                                    <img
+                                        src={`/storage/${settings.logo}`}
+                                        alt="Alexa Biopharma"
+                                        className="max-h-[1em] w-auto inline-block"
+                                    />
                                 </h2>
                                 <p className="text-gray-700 mb-6 leading-relaxed">
                                     {about.who_we_are}
@@ -125,16 +142,19 @@ export default function HomePage({ productCount, testimonials }: any) {
                                     </Link>
                                 </Button>
                             </div>
-                            <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-4 flex justify-center items-center">
+
+                            {/* Right Section */}
+                            <div className="bg-gradient-to-br from-[#91C2E5] to-[#37A7DF] rounded-lg p-6 flex justify-center items-center max-w-md mx-auto">
                                 <img
                                     src="/images/bg-1.png"
                                     alt="Modern Manufacturing Facility"
-                                    className="w-full max-w-sm rounded-xl object-contain"
+                                    className="w-full h-auto rounded-xl object-contain"
                                 />
                             </div>
                         </div>
                     </div>
                 </section>
+
 
                 {/* Featured Product Categories */}
                 <section className="py-16 bg-gray-50">
@@ -176,8 +196,13 @@ export default function HomePage({ productCount, testimonials }: any) {
                 {/* Why Choose Alexa */}
                 <section className="py-16">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins']">
-                            Why Choose Alexa Biopharma
+                        <h2 className="text-3xl lg:text-4xl font-bold text-center text-[#1E62A2] mb-12 font-['Poppins'] flex items-center justify-center gap-2">
+                            <span>Why Choose</span>
+                            <img
+                                src={`/storage/${settings.logo}`}
+                                alt="Alexa Biopharma"
+                                className="h-[1em] w-auto inline-block align-middle"
+                            />
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="text-center">
@@ -258,8 +283,14 @@ export default function HomePage({ productCount, testimonials }: any) {
                 <section className="py-16 bg-gradient-to-r from-[#1E62A2] to-[#37A7DF] text-white">
                     <div className="container mx-auto px-4 text-center">
                         <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-['Poppins']">Join Hands. Grow Together.</h2>
-                        <p className="text-xl mb-8 opacity-90">
-                            Be your own boss. Earn more. Grow faster with Alexa Biopharma opportunity opportunities.
+                        <p className="text-xl mb-8 opacity-90 flex items-center justify-center gap-2 text-center">
+                            <span>Be your own boss. Earn more. Grow faster with</span>
+                            <img
+                                src={`/storage/${settings.logo}`}
+                                alt="Alexa Biopharma"
+                                className="h-[1em] w-auto inline-block align-middle"
+                            />
+                            <span>Biopharma opportunities.</span>
                         </p>
                         <Button asChild size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
                             <Link href={route('opportunity')}>Apply for Opportunity</Link>
