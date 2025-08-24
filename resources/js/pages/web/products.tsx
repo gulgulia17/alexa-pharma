@@ -16,7 +16,7 @@ export default function ProductsPage({ categories, products, sku_count }: any) {
                 {/* Hero Section */}
                 <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
                     {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-black/60"></div>
 
                     <div className="relative container mx-auto px-4 text-center">
                         {/* Logo */}
@@ -24,7 +24,7 @@ export default function ProductsPage({ categories, products, sku_count }: any) {
                             <img
                                 src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
+                                className="h-30 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
@@ -34,7 +34,9 @@ export default function ProductsPage({ categories, products, sku_count }: any) {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
                                 <Download className="mr-2 w-5 h-5" />
-                                Download Full Catalogue
+                                <a href="/docs/ALEXA%20PRODUCT%20CARD.pdf" download="ALEXA_PRODUCT_CARD.pdf">
+                                    Download Full Catalogue
+                                </a>
                             </Button>
                             <Button
                                 asChild
@@ -174,7 +176,7 @@ export default function ProductsPage({ categories, products, sku_count }: any) {
                                     <div className="text-sm opacity-90">Compliant</div>
                                 </div>
                                 <div className="bg-white/20 rounded-lg p-4">
-                                    <div className="font-bold text-lg">{sku_count}+</div>
+                                    <div className="font-bold text-lg">300+</div>
                                     <div className="text-sm opacity-90">Product SKUs</div>
                                 </div>
                             </div>

@@ -29,7 +29,7 @@ export default function HomePage() {
                 {/* Hero Section */}
                 <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
                     {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-black/60"></div>
 
                     <div className="relative container mx-auto px-4 text-center">
                         {/* Logo */}
@@ -37,16 +37,13 @@ export default function HomePage() {
                             <img
                                 src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
+                                className="h-30 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">
                             Dedicated to High-Quality, Affordable Healthcare
                         </h1>
                         <p className="text-xl lg:text-2xl mb-8 opacity-90">ISO 9001:2015 Certified | WHO-GMP Facilities</p>
-                        <Button size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
-                            Explore Our Journey
-                        </Button>
                     </div>
                 </section>
 
@@ -222,22 +219,33 @@ export default function HomePage() {
                 {/* Join Hands */}
                 <section className="py-16">
                     <div className="container mx-auto px-4">
-                        <div className="bg-gradient-to-r from-[#1E62A2] to-[#37A7DF] rounded-lg p-8 lg:p-12 text-white text-center">
-                            <Handshake className="w-16 h-16 mx-auto mb-6" />
-                            <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-['Poppins']">Join Hands with Alexa</h2>
-                            <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-                                We invite entrepreneurs, Medical Representatives, Area Sales Managers, and healthcare professionals to
-                                partner with us in our mission to make quality healthcare accessible to all.
+                        <div className="bg-gradient-to-r from-[#1E62A2] to-[#37A7DF] rounded-lg p-6 sm:p-8 lg:p-12 text-white text-center">
+                            <Handshake className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-6" />
+
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 font-['Poppins']">
+                                Join Hands with Alexa
+                            </h2>
+
+                            <p className="text-base sm:text-lg md:text-xl mb-8 opacity-90 max-w-2xl sm:max-w-3xl mx-auto">
+                                We invite entrepreneurs, Medical Representatives, Area Sales Managers,
+                                and healthcare professionals to partner with us in our mission to
+                                make quality healthcare accessible to all.
                             </p>
+
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button asChild size="lg" className="bg-white text-[#1E62A2] hover:bg-gray-100">
+                                <Button
+                                    asChild
+                                    size="lg"
+                                    className="bg-white text-[#1E62A2] hover:bg-gray-100 w-full sm:w-auto"
+                                >
                                     <Link href={route('opportunity')}>Become a Partner</Link>
                                 </Button>
+
                                 <Button
                                     asChild
                                     size="lg"
                                     variant="outline"
-                                    className="hover:border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] hover:text-white text-white bg-transparent"
+                                    className="hover:border-[#1E62A2] border-[#1E62A2] text-[#1E62A2] hover:bg-[#1E62A2] bg-[#1E62A2] hover:text-white text-white"
                                 >
                                     <Link href="/products">View Our Products</Link>
                                 </Button>

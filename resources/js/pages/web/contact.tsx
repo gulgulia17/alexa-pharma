@@ -52,7 +52,7 @@ export default function ContactPage() {
                 {/* Hero Section */}
                 <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
                     {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-black/60"></div>
 
                     <div className="relative container mx-auto px-4 text-center">
                         {/* Logo */}
@@ -60,7 +60,7 @@ export default function ContactPage() {
                             <img
                                 src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
+                                className="h-30 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">Get in Touch</h1>
@@ -102,7 +102,7 @@ export default function ContactPage() {
                                     <MapPin className="w-12 h-12 text-[#1E62A2] mx-auto mb-4" />
                                     <h3 className="font-semibold mb-2">Head Office</h3>
                                     <p className="text-gray-600 mb-2">{settings.address}</p>
-                                    <p className="text-sm text-gray-500">Corporate Headquarters</p>
+                                    <p className="text-sm text-gray-500">Corporate Headquarter</p>
                                 </CardContent>
                             </Card>
                             <Card className="text-center hover:shadow-lg transition-shadow">
@@ -212,23 +212,25 @@ export default function ContactPage() {
                                 <Card>
                                     <CardContent className="p-6">
                                         <Building2 className="w-12 h-12 text-[#1E62A2] mb-4" />
-                                        <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">About Our Company</h3>
-                                        <p className="text-gray-700 mb-4">
+                                        <h3 className="text-xl font-bold mb-4 text-[#1E62A2]">
+                                            <span>About</span>
                                             <img
                                                 src={`/storage/${settings.logo}`}
                                                 alt="Alexa Biopharma"
-                                                className="h-[1em] w-auto inline-block align-baseline"
+                                                className="max-h-[1em] w-auto inline-block"
                                             />
-                                            Pvt. Ltd. is a trusted pharmaceutical company with over a decade of experience in
+                                        </h3>
+                                        <p className="text-gray-700 mb-4">
+                                            We are a trusted pharmaceutical company with over a decade of experience in
                                             providing high-quality, affordable healthcare solutions.
                                         </p>
                                         <div className="space-y-2 text-sm">
                                             <div className="flex items-center">
                                                 <span className="font-semibold mr-2">Founded:</span>
-                                                <span>{settings.founded}</span>
+                                                <span>{settings.founded ?? 2019}</span>
                                             </div>
                                             <div className="flex items-center">
-                                                <span className="font-semibold mr-2">Headquarters:</span>
+                                                <span className="font-semibold mr-2">Headquarter:</span>
                                                 <span>{settings.address}</span>
                                             </div>
                                             {/* <div className="flex items-center">

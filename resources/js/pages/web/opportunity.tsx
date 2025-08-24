@@ -64,7 +64,7 @@ export default function OpportunityPage() {
                 {/* Hero Section */}
                 <section className="relative bg-[url('/images/pharma-cover.jpg')] bg-cover bg-center text-white py-20 lg:py-32">
                     {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-black/60"></div>
 
                     <div className="relative container mx-auto px-4 text-center">
                         {/* Logo */}
@@ -72,7 +72,7 @@ export default function OpportunityPage() {
                             <img
                                 src={`/storage/${settings.logo}`}
                                 alt="Alexa Biopharma"
-                                className="h-16 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
+                                className="h-30 w-auto object-contain mx-auto bg-white p-2 rounded-md shadow-md"
                             />
                         </div>
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-['Poppins']">Join Hands. Grow Together.</h1>
